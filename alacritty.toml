@@ -1,0 +1,39 @@
+[cursor.style]
+blinking = "Off"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "JetBrainsMono NFP"
+# family = "MonaspiceNe NFM"
+# family="MonaspiceXe NFM"
+# style = "Bold"
+
+[font.offset]
+x = 0
+y = 2
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "none"
+opacity = 0.85
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 150
+lines = 42
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 50
+y = 100

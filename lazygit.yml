@@ -1,0 +1,7 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --syntax-theme base16-256 --diff-so-fancy -s
+gui:
+  sidePanelWidth: 0.2 # number from 0 to 1
+  skipDiscardChangeWarning: true
