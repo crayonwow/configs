@@ -185,6 +185,9 @@ let g:VM_maps['Find Subword Under'] = ''
 cnoremap jk <c-c>
 inoremap jk <Esc>
 
+" есть желание реализовать переход на верхнюю/нижнюю строку в режиме вставки
+" нужно потрахаться с терминалом тк он детектит нажатия c-enter и s-enter
+" inoremap <C-Enter> :OA
 
 " functions 
 function! s:show_documentation()
