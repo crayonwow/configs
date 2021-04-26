@@ -54,8 +54,10 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 
 
-set foldmethod=indent
-autocmd FileType vim setlocal foldmethod=marker
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 """"""""""""""""""""""""""""""""""""""
 """""""""" VISUAL SETTINGS """""""""""
 """"""""""""""""""""""""""""""""""""""
