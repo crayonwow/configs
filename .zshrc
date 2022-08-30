@@ -2,13 +2,24 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/crayon/.oh-my-zsh"
+export ZSH="/Users/s.martynovskiy/.oh-my-zsh"
+
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="/usr/local/opt/php@7.3/bin:$PATH"
+export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
+
+# Gopath 
+export GOPATH="/Users/s.martynovskiy/go"
+
+export DIGOC="/Users/s.martynovskiy/.ssh/digital_ocean_id_rsa"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
+SPACESHIP_GOLANG_COLOR="green"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,6 +85,9 @@ plugins=(
 	git
 	docker-compose
 	docker
+	brew
+    golang
+    rust
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -83,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+#export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -102,10 +116,23 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="mate ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
+alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias ll="ls -laF"
+alias d_conn_test_db="docker exec -it mysql_test_db /bin/bash"
+alias d_create_test_db="docker run --name mysql_test_db -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && d_conn_test_db"
+alias d_clear="docker rm $(docker ps -aq -f status=exited) && docker rm $(docker ps -aq -f status=created) && docker rmi $(docker images -f dangling=true -q)"
 
+# ssh aliases
+alias comm1="ssh smartynovskiy@communication.olymp.devbox.space307.tech"
+alias comm2="ssh smartynovskiy@communication2.olymp.devbox.space307.tech"
+alias comm3="ssh smartynovskiy@communication3.olymp.devbox.space307.tech"
+alias go0="ssh s.martynovskiy@go0.stage.space307.tech"
+alias go1="ssh s.martynovskiy@go1.stage.space307.tech"
+alias app0="ssh smartynovskiy@app0.stage.space307.tech"
 
+alias do_ssh="ssh -i $DIGOC root@134.209.226.172" 
+alias do_sftp="sftp -i $DIGOC root@134.209.226.172" 
 
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
@@ -169,8 +196,10 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 export TERM='xterm-256color'
 export EDITOR='nano'
 export PAGER='less'
-export LC_ALL='ru_RU.UTF-8'
-export LANG='ru_RU.UTF-8'
+#export LC_ALL='ru_RU.UTF-8'
+#export LANG='ru_RU.UTF-8'
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
 export BLOCKSIZE='Mb'
 export GREP_COLOR='1;33'
@@ -204,3 +233,10 @@ setopt nohup
 setopt ZLE
 setopt MULTIBYTE
 setopt NUMERIC_GLOB_SORT
+
+
+#### FIG ENV VARIABLES ####
+[[ -s ~/.fig/fig.sh ]] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+

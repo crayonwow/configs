@@ -1,3 +1,5 @@
-coc-html
-coc-snippets
-coc-css
+ coc-snippets 3.1.1 ~/.config/coc/extensions/node_modules/coc-snippets
+* coc-json 1.6.1 ~/.config/coc/extensions/node_modules/coc-json
+* coc-explorer 0.25.0 ~/.config/coc/extensions/node_modules/coc-explorer
++ coc-rls 1.1.6 ~/.config/coc/extensions/node_modules/coc-rls
++ coc-clangd 0.24.0 ~/.config/coc/extensions/node_modules/coc-clangd
