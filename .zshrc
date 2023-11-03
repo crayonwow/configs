@@ -2,17 +2,19 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/s.martynovskiy/.oh-my-zsh"
+export ZSH="/Users/${USER}/.oh-my-zsh"
 
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="/usr/local/opt/php@7.3/bin:$PATH"
 export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.3/bin:$PATH"
+export PATH="/Users/s1kai/Library/Application Support/pypoetry/venv/bin:$PATH"
 
 # Gopath 
-export GOPATH="/Users/s.martynovskiy/go"
-
-export DIGOC="/Users/s.martynovskiy/.ssh/digital_ocean_id_rsa"
-
+export GOPATH=""
+export DIGOC="/Users/${USER}/.ssh/digital_ocean_id_rsa"
+export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
+export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -35,7 +37,7 @@ SPACESHIP_GOLANG_COLOR="green"
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -81,16 +83,6 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	docker-compose
-	docker
-	brew
-    golang
-    rust
-)
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -117,12 +109,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/init.vim"
+alias vimconfig="nvim ~/.config/nvim/lua"
 alias ll="ls -laF"
 alias d_conn_test_db="docker exec -it mysql_test_db /bin/bash"
-alias d_create_test_db="docker run --name mysql_test_db -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && d_conn_test_db"
+alias d_create_test_db="docker run --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && d_conn_test_db"
 alias d_clear="docker rm $(docker ps -aq -f status=exited) && docker rm $(docker ps -aq -f status=created) && docker rmi $(docker images -f dangling=true -q)"
-
+alias gl="git log --pretty=oneline --no-merges"
+alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+alias n="nvim"
+# 
 # ssh aliases
 alias comm1="ssh smartynovskiy@communication.olymp.devbox.space307.tech"
 alias comm2="ssh smartynovskiy@communication2.olymp.devbox.space307.tech"
@@ -130,9 +125,33 @@ alias comm3="ssh smartynovskiy@communication3.olymp.devbox.space307.tech"
 alias go0="ssh s.martynovskiy@go0.stage.space307.tech"
 alias go1="ssh s.martynovskiy@go1.stage.space307.tech"
 alias app0="ssh smartynovskiy@app0.stage.space307.tech"
+alias abner_prod="ssh smartynovskiy@go-assets-service.prd.abner.space307.tech"
+alias abner_stage="ssh smartynovskiy@go-assets-service.stage.abner.space307.tech"
 
 alias do_ssh="ssh -i $DIGOC root@134.209.226.172" 
 alias do_sftp="sftp -i $DIGOC root@134.209.226.172" 
+
+function box { ssh smartynovskiy@"$1".olymp.devbox.space307.tech }
+
+# example
+# update_go 1.21.0
+function update_go { 
+    sudo rm -rf /usr/local/go
+    curl -L https://dl.google.com/go/go"$1".darwin-amd64.tar.gz >> go.tar.gz
+
+    sudo tar -C /usr/local -xzf go.tar.gz
+    rm go.tar.gz
+}
+
+function upload_devbox { 
+    for file_path in  $(git diff --name-only master); 
+    do
+        file_dir=$(dirname $file_path)
+        sftp smartynovskiy@"$1".olymp.devbox.space307.tech:/data/olymptrade.com-backend/devbox307.tech/"$1"/"$file_dir"/ <<< $'put  '$file_path''
+    done
+}
+
+export -f box > /dev/null
 
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
@@ -194,10 +213,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 
 export TERM='xterm-256color'
-export EDITOR='nano'
+export EDITOR='nvim'
 export PAGER='less'
-#export LC_ALL='ru_RU.UTF-8'
-#export LANG='ru_RU.UTF-8'
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
@@ -215,7 +232,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 
 
 HISTFILE=$ZSH/.zsh-history
-SAVEHIST=1000
+SAVEHIST=10000
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
@@ -224,7 +241,7 @@ setopt histexpiredupsfirst histfindnodups
 setopt CORRECT_ALL
 setopt AUTO_CD
 setopt SH_WORD_SPLIT
-setopt IGNORE_EOF
+# setopt IGNORE_EOF
 setopt NO_BEEP
 setopt extended_glob
 setopt correct
@@ -233,10 +250,22 @@ setopt nohup
 setopt ZLE
 setopt MULTIBYTE
 setopt NUMERIC_GLOB_SORT
+set -o vi
 
 
-#### FIG ENV VARIABLES ####
-[[ -s ~/.fig/fig.sh ]] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+plugins=(
+	git
+	docker-compose
+	docker
+	brew
+    golang
+    rust
+    gh
+    pip
+    python
+    vi-mode
+    macos
+    poetry
+)
 
-
+source $ZSH/oh-my-zsh.sh
