@@ -11,7 +11,7 @@ export PATH="/opt/homebrew/opt/php@7.3/bin:$PATH"
 export PATH="/Users/s1kai/Library/Application Support/pypoetry/venv/bin:$PATH"
 
 # Gopath 
-export GOPATH=""
+export GOPATH="$(go env GOPATH)"
 export DIGOC="/Users/${USER}/.ssh/digital_ocean_id_rsa"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
@@ -19,9 +19,11 @@ export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
-SPACESHIP_GOLANG_COLOR="green"
+ZSH_THEME="minimal"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="spaceship"
 
+SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,57 +103,6 @@ ENABLE_CORRECTION="true"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/lua"
-alias ll="ls -laF"
-alias d_conn_test_db="docker exec -it mysql_test_db /bin/bash"
-alias d_create_test_db="docker run --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && d_conn_test_db"
-alias d_clear="docker rm $(docker ps -aq -f status=exited) && docker rm $(docker ps -aq -f status=created) && docker rmi $(docker images -f dangling=true -q)"
-alias gl="git log --pretty=oneline --no-merges"
-alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
-alias n="nvim"
-# 
-# ssh aliases
-alias comm1="ssh smartynovskiy@communication.olymp.devbox.space307.tech"
-alias comm2="ssh smartynovskiy@communication2.olymp.devbox.space307.tech"
-alias comm3="ssh smartynovskiy@communication3.olymp.devbox.space307.tech"
-alias go0="ssh s.martynovskiy@go0.stage.space307.tech"
-alias go1="ssh s.martynovskiy@go1.stage.space307.tech"
-alias app0="ssh smartynovskiy@app0.stage.space307.tech"
-alias abner_prod="ssh smartynovskiy@go-assets-service.prd.abner.space307.tech"
-alias abner_stage="ssh smartynovskiy@go-assets-service.stage.abner.space307.tech"
-
-alias do_ssh="ssh -i $DIGOC root@134.209.226.172" 
-alias do_sftp="sftp -i $DIGOC root@134.209.226.172" 
-
-function box { ssh smartynovskiy@"$1".olymp.devbox.space307.tech }
-
-# example
-# update_go 1.21.0
-function update_go { 
-    sudo rm -rf /usr/local/go
-    curl -L https://dl.google.com/go/go"$1".darwin-amd64.tar.gz >> go.tar.gz
-
-    sudo tar -C /usr/local -xzf go.tar.gz
-    rm go.tar.gz
-}
-
-function upload_devbox { 
-    for file_path in  $(git diff --name-only master); 
-    do
-        file_dir=$(dirname $file_path)
-        sftp smartynovskiy@"$1".olymp.devbox.space307.tech:/data/olymptrade.com-backend/devbox307.tech/"$1"/"$file_dir"/ <<< $'put  '$file_path''
-    done
-}
-
-export -f box > /dev/null
 
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
@@ -269,3 +220,71 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias vimconfig="nvim ~/.config/nvim/lua"
+
+alias d_conn_test_db="docker exec -it mysql_test_db /bin/bash"
+alias d_create_test_db="docker run --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && d_conn_test_db"
+alias d_clear="docker rm $(docker ps -aq -f status=exited) && docker rm $(docker ps -aq -f status=created) && docker rmi $(docker images -f dangling=true -q)"
+alias dps="docker ps -a --format '{{.Status}} - {{.Names}}'"
+alias dsp="docker system prune -a --volumes "
+
+
+alias gl="git log --pretty=oneline --no-merges"
+
+alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+
+alias n="nvim"
+
+alias l="exa -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
+
+
+# 
+# ssh aliases
+alias comm1="ssh smartynovskiy@communication.olymp.devbox.space307.tech"
+alias comm2="ssh smartynovskiy@communication2.olymp.devbox.space307.tech"
+alias comm3="ssh smartynovskiy@communication3.olymp.devbox.space307.tech"
+alias go0="ssh s.martynovskiy@go0.stage.space307.tech"
+alias go1="ssh s.martynovskiy@go1.stage.space307.tech"
+alias app0="ssh smartynovskiy@app0.stage.space307.tech"
+alias abner_prod="ssh smartynovskiy@go-assets-service.prd.abner.space307.tech"
+alias abner_stage="ssh smartynovskiy@go-assets-service.stage.abner.space307.tech"
+
+alias do_ssh="ssh -i $DIGOC root@134.209.226.172" 
+alias do_sftp="sftp -i $DIGOC root@134.209.226.172" 
+
+function box { ssh smartynovskiy@"$1".olymp.devbox.space307.tech }
+
+# example
+# update_go 1.21.0
+function update_go { 
+    mkdir -p tmp
+    cd tmp
+    os=$(go env GOOS)
+    arch=$(go env GOARCH)
+    sudo rm -rf $(go env GOROOT)
+    curl -L https://dl.google.com/go/go"$1"."$os"-"$arch".tar.gz >> go.tar.gz
+    sudo tar -C /usr/local -xzf go.tar.gz
+    cd ..
+    rm -rf tmp
+    go version
+}
+
+function upload_devbox { 
+    for file_path in  $(git diff --name-only master); 
+    do
+        file_dir=$(dirname $file_path)
+        sftp smartynovskiy@"$1".olymp.devbox.space307.tech:/data/olymptrade.com-backend/devbox307.tech/"$1"/"$file_dir"/ <<< $'put  '$file_path''
+    done
+}
+
+export -f box > /dev/null
