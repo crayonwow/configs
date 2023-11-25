@@ -10,7 +10,8 @@
 # to the user's home directory starting with `~/`.
 #import:
 #  - /path/to/alacritty.yml
-
+import:
+  - ~/.config/alacritty/themes/themes/ubuntu.yaml
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -21,6 +22,8 @@
 # each instance of Alacritty. If it is not present, alacritty will
 # check the local terminfo database and use `alacritty` if it is
 # available, otherwise `xterm-256color` is used.
+env:
+  TERM: xterm-256color
 TERM: xterm-256color
 window:
   # Window dimensions (changes require restart)
