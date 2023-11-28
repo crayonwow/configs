@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/${USER}/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="/usr/local/opt/php@7.3/bin:$PATH"
@@ -12,14 +12,16 @@ export PATH="/Users/s1kai/Library/Application Support/pypoetry/venv/bin:$PATH"
 
 # Gopath 
 export GOPATH="$(go env GOPATH)"
-export DIGOC="/Users/${USER}/.ssh/digital_ocean_id_rsa"
+export GOCACHE="$(go env GOCACHE)"
+export DIGOC="$HOME/.ssh/digital_ocean_id_rsa"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="minimal"
+# ZSH_THEME="minimal"
+ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="spaceship"
 
@@ -245,7 +247,8 @@ alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env 
 
 alias n="nvim"
 
-alias l="exa -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
+alias ll="exa -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
+alias l="exa"
 
 
 # 
