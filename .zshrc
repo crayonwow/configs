@@ -240,7 +240,7 @@ alias d_create_test_redis="docker run --rm --network=host --name redis_test_db -
 alias dps="docker ps -a --format '{{.Names}} - {{.Status}}'"
 alias dsp="docker system prune -af --volumes "
 
-alias gl="git log --format="%Cred%H %Cblue%an %Creset(%ah) %Cgreen%s" --no-merges"
+alias gl='git log --format="%Cred%H %Cblue%an %Creset(%ah) %Cgreen%s" --no-merges'
 
 alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias n="nvim"
