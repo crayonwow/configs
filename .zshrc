@@ -228,11 +228,11 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/lua"
+alias zshconfig="ni $DOT_FILES"
+alias vimconfig="ni ~/.config/nvim/lua"
 
 alias d_connect_test_db="docker exec -it mysql_test_db mysql -uroot -p123qwe"
-alias d_create_test_db="docker run --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && sleep 5 && d_conn_test_db"
+alias d_create_test_db="docker run --rm --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && sleep 5 && d_connect_test_db"
 
 alias d_connect_test_redis="docker exec -it redis_test_db redis-cli"
 alias d_create_test_redis="docker run --rm --network=host --name redis_test_db -d redis --port 7777 && sleep 5 && d_connect_test_redis"
@@ -246,7 +246,7 @@ alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env 
 alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
-alias ni="zi && nvim ."
+alias cat="bat --theme=OneHalfDark"
 
 # example
 # update_go 1.21.0
@@ -261,6 +261,16 @@ function update_go {
     cd ..
     rm -rf tmp
     go version
+}
+
+# z + nvim - if has args than goes to dir and run nvim. otherwise calls fzf+z to choose dir and starts nvim
+function zim { 
+    command='zi'
+    if [ $# -ne 0 ]
+    then
+        command='z "$1"'
+    fi
+    eval ${command} && nvim . && z - >> /dev/null
 }
 
 eval "$(zoxide init zsh)"
