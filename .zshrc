@@ -1,17 +1,11 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-export PATH=$PATH:$(go env GOPATH)/bin
 export DOT_FILES="$HOME/configs"
 
-# Gopath 
-export GOPATH="$(go env GOPATH)"
-export GOCACHE="$(go env GOCACHE)"
+export PATH=$PATH:/usr/local/go/bin
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
+
+# 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -20,7 +14,6 @@ export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 # ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="spaceship"
-
 SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
