@@ -221,8 +221,8 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="ni $DOT_FILES"
-alias vimconfig="ni ~/.config/nvim/lua"
+alias zshconfig="zim $DOT_FILES"
+alias vimconfig="zim ~/.config/nvim/lua"
 
 alias d_connect_test_db="docker exec -it mysql_test_db mysql -uroot -p123qwe"
 alias d_create_test_db="docker run --rm --name mysql_test_db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123qwe -d mysql:latest && sleep 5 && d_connect_test_db"
