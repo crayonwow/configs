@@ -210,6 +210,7 @@ plugins=(
     poetry
     kubectl
     minikube
+    terraform
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -235,7 +236,7 @@ alias dsp="docker system prune -af --volumes "
 
 alias gl='git log --format="%Cred%H %Cblue%an %Creset(%ah) %Cgreen%s" --no-merges'
 
-alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
@@ -268,3 +269,10 @@ function zim {
 
 eval "$(zoxide init zsh)"
 source "$DOT_FILES/.zshrc.work"
+if [ -d $DOT_FILES/completions ]; then
+  for config_file in $DOT_FILES/completions/*; do
+    if [ -f "$config_file" ]; then
+      source "$config_file"
+    fi
+  done
+fi
