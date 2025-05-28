@@ -1,0 +1,12 @@
+sudo pacman -S --needed base-devel git
+sudo pacman -S chromium iw dialog wpa_supplicant networkmanager network-manager-applet bluez-utils bluez zsh
+yay -S zoxide lazygit eza ttf-jetbrains-mono-nerd openvpn bat nvim ripgrep fzf nodejs rust btop npm xclip docker less docker-buildx
+
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+sudo systemctl enable wpa_supplicant.service
+sudo systemctl start wpa_supplicant.service
+sudo systemctl start bluetooth.service
+sudo systemctl enable bluetooth.service
