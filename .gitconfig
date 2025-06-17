@@ -1,0 +1,24 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+	
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta] 
+    side-by-side = true
+  	diff-so-fancy = true
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+[merge]
+    conflictstyle = zdiff3
+		tool = nvimdiff
+
+[diff]
+		tool = nvimdiff
