@@ -4,6 +4,7 @@ export DOT_FILES="$HOME/configs"
 export PATH=$PATH:/usr/local/go/bin
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
+export MANPAGER="nvim +Man!"
 
 # 
 # Set name of the theme to load --- if set to "random", it will
