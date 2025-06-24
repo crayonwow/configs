@@ -2,19 +2,19 @@ export ZSH="$HOME/.oh-my-zsh"
 export DOT_FILES="$HOME/configs"
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 export MANPAGER="nvim +Man!"
 
-# 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="minimal"
+ZSH_THEME="minimal"
 # ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
