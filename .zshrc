@@ -11,10 +11,10 @@ export MANPAGER="nvim +Man!"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="minimal"
+# ZSH_THEME="minimal"
 # ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
-# ZSH_THEME="spaceship"
+ZSH_THEME="spaceship"
 SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
@@ -95,6 +95,9 @@ ENABLE_CORRECTION="true"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
@@ -140,8 +143,8 @@ zstyle ':completion:*:history-words' stop yes
 zstyle ':completion:*:history-words' remove-all-dups yes
 zstyle ':completion:*:history-words' list false
 zstyle ':completion:*:history-words' menu yes select
-zstyle ':completion:*' old-menu true
-zstyle ':completion:*' original true
+zstyle ':completion:*' old-menu false
+# zstyle ':completion:*' original true
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' word true
@@ -162,7 +165,7 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
 export BLOCKSIZE='Mb'
-export GREP_COLOR='mt=1;33'
+export GREP_COLOR='1;35;49'
 export LESSCHARSET='UTF-8'
 export OOO_FORCE_DESKTOP='gnome'
 export LESS_TERMCAP_mb=$'\E[01;31m'       
@@ -238,7 +241,7 @@ alias dsp="docker system prune -af --volumes "
 alias gl='git log --format="%Cred%H %Cblue%an %Creset(%ah) %Cgreen%s" --no-merges'
 
 alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
-alias n="nvim"
+alias n="nvim ."
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
 alias cat="bat --theme=OneHalfDark"
@@ -268,7 +271,9 @@ function zim {
     eval ${command} && nvim . && z - >> /dev/null
 }
 
+source <(fzf --zsh)
 eval "$(zoxide init zsh)"
+
 source "$DOT_FILES/.zshrc.work"
 if [ -d $DOT_FILES/completions ]; then
   for config_file in $DOT_FILES/completions/*; do
