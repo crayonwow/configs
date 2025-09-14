@@ -1,6 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export DOT_FILES="$HOME/configs"
 
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
@@ -241,7 +242,7 @@ alias dsp="docker system prune -af --volumes "
 alias gl='git log --format="%Cred%H %Cblue%an %Creset(%ah) %Cgreen%s" --no-merges'
 
 alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
-alias n="nvim ."
+alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
 alias cat="bat --theme=OneHalfDark"
