@@ -28,3 +28,6 @@
 [diff]
     tool = nvimdiff
     submodule = log
+[user]
+	name = Stepan Martynovskiy
+	email = martin-sv@bk.ru

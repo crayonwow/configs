@@ -411,3 +411,6 @@ run '~/.tmux/plugins/tpm/tpm'
 # # /!\ do not remove the previous line
 
 bind -n C-a send-keys C-l \; run 'sleep 0.2' \; clear-history
+
+set -ga terminal-overrides ",*-256color:Tc"
+

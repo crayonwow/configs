@@ -29,6 +29,7 @@ multiplier = 3
 decorations = "none"
 opacity = 1
 startup_mode = "Windowed"
+option_as_alt = "OnlyLeft" 
 
 # [window.dimensions]
 # columns = 150
