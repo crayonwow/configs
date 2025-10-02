@@ -1,0 +1,2 @@
+brew install --cask nikitabobko/tap/aerospace
+brew install fzf tmux zoxide eza neovim spaceship node go lazygit wget bat git-delta btop ripgrep
