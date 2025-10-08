@@ -5,8 +5,11 @@ import = [
 [cursor.style]
 blinking = "Off"
 
-[env]
-TERM = "xterm-256color"
+# [env]
+# TERM = "xterm-256color"
+
+# [terminal]
+# osc52="CopyPaste"
 
 [font]
 size = 17.0

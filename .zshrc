@@ -1,7 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 export DOT_FILES="$HOME/configs"
 
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
@@ -15,7 +14,8 @@ export MANPAGER="nvim +Man!"
 # ZSH_THEME="minimal"
 # ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="spaceship"
+source /opt/homebrew/opt/spaceship/spaceship.zsh
+# ZSH_THEME="spaceship"
 SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
@@ -249,6 +249,7 @@ alias cat="bat --theme=OneHalfDark"
 
 # example
 # update_go 1.21.0
+# use only when installed manualy
 function update_go { 
     mkdir -p tmp
     cd tmp
@@ -273,13 +274,22 @@ function zim {
 }
 
 source <(fzf --zsh)
-eval "$(zoxide init zsh)"
 
-source "$DOT_FILES/.zshrc.work"
-if [ -d $DOT_FILES/completions ]; then
+
+if ! [ -z $(ls $DOT_FILES/work) ]; then
+  for config_file in $DOT_FILES/work/*; do
+    if [ -f "$config_file" ]; then
+      source "$config_file"
+    fi
+  done
+fi
+
+if ! [ -z $(ls $DOT_FILES/completions) ]; then
   for config_file in $DOT_FILES/completions/*; do
     if [ -f "$config_file" ]; then
       source "$config_file"
     fi
   done
 fi
+
+eval "$(zoxide init zsh)"
