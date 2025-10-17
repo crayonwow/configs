@@ -14,8 +14,7 @@ export MANPAGER="nvim +Man!"
 # ZSH_THEME="minimal"
 # ZSH_THEME="imajes"
 # ZSH_THEME="robbyrussell"
-source /opt/homebrew/opt/spaceship/spaceship.zsh
-# ZSH_THEME="spaceship"
+ZSH_THEME="spaceship"
 SPACESHIP_GOLANG_COLOR="green"
 
 # Set list of themes to pick from when loading at random
