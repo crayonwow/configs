@@ -1,7 +1,7 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --syntax-theme='Monokai Extended Origin' --diff-so-fancy -s
+  pagers:
+    - pager: delta --dark --paging=never --syntax-theme='Monokai Extended Origin' --diff-so-fancy -s
+      colorArg: always
 gui:
   expandFocusedSidePanel: true
   sidePanelWidth: 0.2 # number from 0 to 1
@@ -14,34 +14,24 @@ gui:
       - bold
     inactiveBorderColor:
       - "#BD93F9"
-
     searchingActiveBorderColor:
       - "#8BE9FD"
       - bold
-
     optionsTextColor:
       - "#6272A4"
-
     selectedLineBgColor:
       - "#6272A4"
-
     inactiveViewSelectedLineBgColor:
       - bold
-
     cherryPickedCommitFgColor:
       - "#6272A4"
-
     cherryPickedCommitBgColor:
       - "#8BE9FD"
-
     markedBaseCommitFgColor:
       - "#8BE9FD"
-
     markedBaseCommitBgColor:
       - "#F1FA8C"
-
     unstagedChangesColor:
       - "#FF5555"
-
     defaultFgColor:
       - "#F8F8F2"

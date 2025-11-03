@@ -244,7 +244,7 @@ alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env
 alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
-alias cat="bat --theme=OneHalfDark"
+alias cat="bat -p --theme=OneHalfDark"
 
 # example
 # update_go 1.21.0
