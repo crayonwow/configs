@@ -3,6 +3,7 @@ export DOT_FILES="$HOME/configs"
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$HOME/.local/bin:$PATH
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 export MANPAGER="nvim +Man!"
@@ -274,21 +275,12 @@ function zim {
 
 source <(fzf --zsh)
 
+for config_file in $(ls $DOT_FILES/work); do
+    source $DOT_FILES/work/$config_file
+done
 
-if ! [ -z $(ls $DOT_FILES/work) ]; then
-  for config_file in $DOT_FILES/work/*; do
-    if [ -f "$config_file" ]; then
-      source "$config_file"
-    fi
-  done
-fi
-
-if ! [ -z $(ls $DOT_FILES/completions) ]; then
-  for config_file in $DOT_FILES/completions/*; do
-    if [ -f "$config_file" ]; then
-      source "$config_file"
-    fi
-  done
-fi
+for config_file in $(ls $DOT_FILES/completions); do
+    source $DOT_FILES/completions/$config_file
+done
 
 eval "$(zoxide init zsh)"

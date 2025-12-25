@@ -16,8 +16,6 @@ size = 17.0
 
 [font.normal]
 family = "JetBrainsMono NFP"
-# family = "MonaspiceNe NFM"
-# family="MonaspiceXe NFM"
 # style = "Bold"
 
 [font.offset]
@@ -32,7 +30,7 @@ multiplier = 3
 decorations = "none"
 opacity = 1
 startup_mode = "Windowed"
-option_as_alt = "OnlyLeft" 
+# option_as_alt = "OnlyLeft" 
 
 # [window.dimensions]
 # columns = 150
