@@ -33,3 +33,6 @@
 [diff]
     tool = nvimdiff
     submodule = log
+
+[includeIf "gitdir:~/wildberries/"]
+    path = .gitconfig.wb
