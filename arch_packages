@@ -1,6 +1,15 @@
 sudo pacman -S --needed base-devel git
-sudo pacman -S chromium iw dialog wpa_supplicant networkmanager network-manager-applet bluez-utils bluez zsh
-yay -S zoxide lazygit eza ttf-jetbrains-mono-nerd openvpn bat nvim ripgrep fzf nodejs rust btop npm xclip docker less docker-buildx
+yay -S bat bluez zsh bluez-utils btop chromium dialog docker docker-buildx eza fzf git-delta github-cli golang iw kubectl lazygit less network-manager-applet networkmanager nodejs npm nvim openvpn ripgrep rust ttf-jetbrains-mono-nerd wpa_supplicant xclip zoxide tmux unzip python
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/crayonwow/astronvim_config/refs/heads/main/init.sh)"
+curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
+
+mkdir -p .config/lazygit
+ln -s -f configs/.zshrc .zshrc
+ln -s -f configs/.tmux.conf.local .config/tmux/tmux.conf.local
+ln -s -f configs/lazygit.yml .config/lazygit/config.yml
+ln -s -f configs/.gitconfig .gitconfig
 
 sudo systemctl enable docker.service
 sudo systemctl start docker.service

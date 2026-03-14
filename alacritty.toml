@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/ashes_dark.toml"
+    "~/.config/alacritty/themes/themes/argonaut.toml"
 ]
 [cursor.style]
 blinking = "Off"
@@ -16,7 +16,7 @@ size = 17.0
 
 [font.normal]
 family = "JetBrainsMono NFP"
-# style = "Bold"
+style = "Bold"
 
 [font.offset]
 x = 0
@@ -30,7 +30,7 @@ multiplier = 3
 decorations = "none"
 opacity = 1
 startup_mode = "Windowed"
-# option_as_alt = "OnlyLeft" 
+option_as_alt = "OnlyLeft" 
 
 # [window.dimensions]
 # columns = 150
