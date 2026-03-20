@@ -30,3 +30,12 @@ systemctl status wpa_supplicant.service --no-pager
 sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
 systemctl status bluetooth.service --no-pager
+
+# OPTIONAL
+systemctl --user enable wireplumber
+systemctl --user enable pipewire.service
+systemctl --user enable pipewire-pulse.service
+
+systemctl --user start wireplumber
+systemctl --user start pipewire.service
+systemctl --user start pipewire-pulse.service
