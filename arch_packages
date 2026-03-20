@@ -1,21 +1,32 @@
 sudo pacman -S --needed base-devel git
-yay -S bat bluez zsh bluez-utils btop chromium dialog docker docker-buildx eza fzf git-delta github-cli golang iw kubectl lazygit less network-manager-applet networkmanager nodejs npm nvim openvpn ripgrep rust ttf-jetbrains-mono-nerd wpa_supplicant xclip zoxide tmux unzip python
+yay -S bat bluez zsh bluez-utils chromium dialog docker docker-build docker-compose \
+  eza fzf git-delta github-cli golang iw kubectl lazygit less networkmanager nodejs \
+  npm nvim ripgrep rust ttf-jetbrains-mono-nerd wpa_supplicant xclip zoxide tmux unzip \
+  python bottom xorg-server xorg-xinit libx11 libxft libxinerama webkit2gtk pavucontrol
+
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/crayonwow/astronvim_config/refs/heads/main/init.sh)"
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 
 mkdir -p .config/lazygit
-ln -s -f configs/.zshrc .zshrc
-ln -s -f configs/.tmux.conf.local .config/tmux/tmux.conf.local
-ln -s -f configs/lazygit.yml .config/lazygit/config.yml
-ln -s -f configs/.gitconfig .gitconfig
+ln -s -f ~/configs/.zshrc .zshrc
+ln -s -f ~/configs/.tmux.conf.local .config/tmux/tmux.conf.local
+ln -s -f ~/configs/lazygit.yml .config/lazygit/config.yml
+ln -s -f ~/configs/.gitconfig .gitconfig
 
+sudo systemctl enable sshd.service
+sudo systemctl start sshd.service
+systemctl status sshd.service --no-pager
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
+systemctl status docker.service --no-pager
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
+systemctl status NetworkManager.service --no-pager
 sudo systemctl enable wpa_supplicant.service
 sudo systemctl start wpa_supplicant.service
+systemctl status wpa_supplicant.service --no-pager
 sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
+systemctl status bluetooth.service --no-pager
