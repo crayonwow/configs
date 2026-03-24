@@ -166,7 +166,7 @@ export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
 export BLOCKSIZE='Mb'
-export GREP_COLOR='1;35;49'
+export GREP_COLORS='mt=1;35;49'
 export LESSCHARSET='UTF-8'
 export OOO_FORCE_DESKTOP='gnome'
 export LESS_TERMCAP_mb=$'\E[01;31m'       

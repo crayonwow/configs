@@ -1,8 +1,12 @@
 sudo pacman -S --needed base-devel git
-yay -S bat bluez zsh bluez-utils chromium dialog docker docker-build docker-compose \
-  eza fzf git-delta github-cli golang iw kubectl lazygit less networkmanager nodejs \
-  npm nvim ripgrep rust ttf-jetbrains-mono-nerd wpa_supplicant xclip zoxide tmux unzip \
-  python bottom xorg-server xorg-xinit libx11 libxft libxinerama webkit2gtk pavucontrol
+# base
+yay -S bat bluez bluez-utils bottom docker docker-build docker-compose eza fzf git-delta \
+  github-cli golang iwd kubectl lazygit less networkmanager nodejs npm nvim python ripgrep \
+  rust tmux unzip zoxide zsh
+
+# gui
+yay -S alacritty dialog libx11 libxft libxinerama pavucontrol ttf-jetbrains-mono-nerd \
+  webkit2gtk xclip xorg-server xorg-xinit
 
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -10,10 +14,19 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/crayonwow/astronvim_config
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 
 mkdir -p .config/lazygit
-ln -s -f ~/configs/.zshrc .zshrc
-ln -s -f ~/configs/.tmux.conf.local .config/tmux/tmux.conf.local
-ln -s -f ~/configs/lazygit.yml .config/lazygit/config.yml
-ln -s -f ~/configs/.gitconfig .gitconfig
+mkdir -p .config/alacritty
+
+ln -s -f ~/configs/.zshrc ~/.zshrc
+ln -s -f ~/configs/.tmux.conf.local ~/.config/tmux/tmux.conf.local
+ln -s -f ~/configs/lazygit.yml ~/.config/lazygit/config.yml
+ln -s -f ~/configs/.gitconfig ~/.gitconfig
+ln -s -f ~/configs/.xinitrc ~/.xinitrc
+ln -s -f ~/configs/00-mac-fix.conf /etc/NetworkManager/conf.d/00-mac-fix.conf
+ln -s -f ~/configs/wifi_backend.conf /etc/NetworkManager/conf.d/wifi_backend.conf
+
+# not sure 
+ln -s /usr/lib/systemd/network/80-wifi-station.network.example /etc/systemd/network/80-wifi-station.network
+ln -s /usr/lib/systemd/network/89-ethernet.network.example /etc/systemd/network/89-ethernet.network
 
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
@@ -24,18 +37,14 @@ systemctl status docker.service --no-pager
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 systemctl status NetworkManager.service --no-pager
-sudo systemctl enable wpa_supplicant.service
-sudo systemctl start wpa_supplicant.service
-systemctl status wpa_supplicant.service --no-pager
 sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
 systemctl status bluetooth.service --no-pager
 
-# OPTIONAL
+# probably optional when arch installed with archinstall
 systemctl --user enable wireplumber
 systemctl --user enable pipewire.service
 systemctl --user enable pipewire-pulse.service
-
 systemctl --user start wireplumber
 systemctl --user start pipewire.service
 systemctl --user start pipewire-pulse.service
