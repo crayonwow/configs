@@ -38,6 +38,8 @@ blocks:
         foreground_templates:
           - "{{ if ne .BranchStatus '≡' }}red{{end}}"
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}red{{ end }}"
+          - "{{ if gt .Ahead 0 }}red{{ end }}"
+          - "{{ if gt .Behind 0 }}red{{ end }}"
         template: "({{ .HEAD }})"
         options:
           branch_icon: ""
