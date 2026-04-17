@@ -33,3 +33,12 @@
 [diff]
     tool = nvimdiff
     submodule = log
+[rerere]
+	enabled = true
+	autoUpdate = true
+[fetch]
+	writeCommitGraph = true
+[maintenance]
+	repo = /Users/s1kai/aviasales/delta
+	repo = /Users/s1kai/aviasales/delta-full
+	repo = /Users/s1kai/aviasales/terraform
