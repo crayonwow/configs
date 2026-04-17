@@ -138,6 +138,12 @@ function zim {
     eval ${command} && nvim . && z - >> /dev/null
 }
 
+source <(fzf --zsh)
+eval "$(zoxide init --cmd cd zsh)"
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
 for config_file in $(ls $DOT_FILES/work); do
     source $DOT_FILES/work/$config_file
 done
@@ -145,9 +151,3 @@ done
 for config_file in $(ls $DOT_FILES/completions); do
     source $DOT_FILES/completions/$config_file
 done
-
-source <(fzf --zsh)
-eval "$(zoxide init --cmd cd zsh)"
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-complete -C '/usr/local/bin/aws_completer' aws
