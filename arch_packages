@@ -48,3 +48,6 @@ systemctl --user enable pipewire-pulse.service
 systemctl --user start wireplumber
 systemctl --user start pipewire.service
 systemctl --user start pipewire-pulse.service
+
+# auto connect to bluetooth headphones
+pactl load-module module-switch-on-connect
