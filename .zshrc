@@ -8,7 +8,7 @@ export MANPAGER="nvim +Man!"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export TERM='xterm-256color'
 export EDITOR='nvim'
-export PAGER='bat'
+export PAGER='less'
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
@@ -54,7 +54,6 @@ zinit light Aloxaf/fzf-tab
 # zinit snippet OMZP::archlinux        
 zinit snippet OMZP::aws              
 zinit snippet OMZP::brew
-zinit snippet OMZP::command-not-found
 zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::gh
@@ -66,8 +65,7 @@ zinit snippet OMZP::rust
 zinit snippet OMZP::terraform
 
 bindkey -v
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey '^ ' autosuggest-accept
 
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
