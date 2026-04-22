@@ -78,6 +78,8 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt correct_all
+setopt correct
 
 # Completion styling
 zstyle ':completion:*' matcher-list '' \
@@ -86,9 +88,11 @@ zstyle ':completion:*' matcher-list '' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':completion:*:correct:*' insert-unambiguous true
+zstyle ':completion:*:correct:*' original true          
 
 alias zshconfig="zim $DOT_FILES"
 alias vimconfig="zim ~/.config/nvim/lua"
@@ -109,6 +113,13 @@ alias ll="eza -lax --icons --header --git --created --modified --color-scale -H 
 alias l="eza"
 alias cat="bat -p --theme=OneHalfDark"
 alias z="cd"
+
+alias cp='nocorrect cp'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias sudo='nocorrect sudo'
+alias su='nocorrect su'
 
 # example
 # update_go 1.21.0
