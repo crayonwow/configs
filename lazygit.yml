@@ -1,7 +1,7 @@
 git:
   ignoreWhitespaceInDiffView: true
-  pagers:
-    - pager: delta --dark --paging=never --syntax-theme='Monokai Extended Origin' --diff-so-fancy -s
+  diffRenderers:
+    - command: delta --dark --paging=never --syntax-theme='Monokai Extended Origin' --diff-so-fancy -s
       colorArg: always
 gui:
   expandFocusedSidePanel: true
