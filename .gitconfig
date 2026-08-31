@@ -4,11 +4,11 @@
 
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 	
 [core]
     pager = delta
@@ -39,6 +39,6 @@
 [fetch]
 	writeCommitGraph = true
 [maintenance]
-	repo = /Users/s1kai/aviasales/delta
-	repo = /Users/s1kai/aviasales/delta-full
-	repo = /Users/s1kai/aviasales/terraform
+	repo = $HOME/aviasales/delta
+	repo = $HOME/aviasales/delta-full
+	repo = $HOME/aviasales/terraform

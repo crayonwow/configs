@@ -160,3 +160,6 @@ done
 for config_file in $(ls $DOT_FILES/completions); do
     source $DOT_FILES/completions/$config_file
 done
+
+# opencode
+export PATH=/home/s1kai/.opencode/bin:$PATH

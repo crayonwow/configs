@@ -18,6 +18,7 @@ set $term alacritty
 # Your preferred application launcher
 set $menu wofi --show=drun
     
+# output eDP-1 scale 1.7
 
 ### Output configuration
 #
@@ -85,6 +86,7 @@ input type:keyboard {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+space exec "swaymsg input type:keyboard xkb_switch_layout next"   
 #
 # Moving around:
 #
@@ -110,7 +112,7 @@ input type:keyboard {
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
     
-    bindsym $mod+Ctrl+q exec swaylock & systemctl suspend
+    bindsym $mod+Ctrl+q exec swaylock 
     bindsym $mod+s exec grimshot savecopy area
 #
 # Workspaces:
@@ -155,13 +157,13 @@ input type:keyboard {
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+Ctrl+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+f floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+f focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
