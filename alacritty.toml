@@ -15,8 +15,7 @@ osc52="CopyPaste"
 size = 14.0
 
 [font.normal]
-family = "JetBrainsMono NFP"
-style = "Bold"
+family = "MonaspiceXe Nerd Font"
 
 [font.offset]
 x = 0

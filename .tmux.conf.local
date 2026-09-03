@@ -418,3 +418,7 @@ bind C-a send-keys C-l \; run 'sleep 0.2' \; clear-history
 
 set -g extended-keys on
 set -g extended-keys-format csi-u
+set-option -g status-interval 5
+set-option -g automatic-rename on
+set-option -g automatic-rename-format '#{b:pane_current_path}'
+
