@@ -1,7 +1,7 @@
 git:
   ignoreWhitespaceInDiffView: true
   diffRenderers:
-    - command: delta --dark --paging=never --syntax-theme='Monokai Extended Origin' --diff-so-fancy -s
+    - command: delta --dark --paging=never --syntax-theme='Catppuccin Mocha' --true-color=always
       colorArg: always
 gui:
   expandFocusedSidePanel: true
@@ -11,28 +11,30 @@ gui:
   skipDiscardChangeWarning: true
   theme:
     activeBorderColor:
-      - "#FF79C6"
+      - "#89b4fa"
       - bold
     inactiveBorderColor:
-      - "#BD93F9"
+      - "#a6adc8"
     searchingActiveBorderColor:
-      - "#8BE9FD"
-      - bold
+      - "#f9e2af"
     optionsTextColor:
-      - "#6272A4"
+      - "#89b4fa"
     selectedLineBgColor:
-      - "#6272A4"
+      - "#313244"
     inactiveViewSelectedLineBgColor:
-      - bold
+      - "#6c7086"
     cherryPickedCommitFgColor:
-      - "#6272A4"
+      - "#89b4fa"
     cherryPickedCommitBgColor:
-      - "#8BE9FD"
+      - "#45475a"
     markedBaseCommitFgColor:
-      - "#8BE9FD"
+      - "#89b4fa"
     markedBaseCommitBgColor:
-      - "#F1FA8C"
+      - "#f9e2af"
     unstagedChangesColor:
-      - "#FF5555"
+      - "#f38ba8"
     defaultFgColor:
-      - "#F8F8F2"
+      - "#cdd6f4"
+
+  authorColors:
+    "*": "#b4befe"

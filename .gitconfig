@@ -17,14 +17,14 @@
 [interactive]
     diffFilter = delta --color-only
 
-[delta] 
+[delta]
     syntax-theme = OneHalfDark
     side-by-side = true
-    diff-so-fancy = true
-    diff-highlight = true
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
+    navigate = true
+    dark = true
     true-color = always
+    features = decorations
+    line-numbers = true
 
 [merge]
     conflictstyle = zdiff3
