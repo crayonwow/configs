@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/alacritty_0_12.toml"
+    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
 ]
 [cursor.style]
 blinking = "Off"
@@ -19,7 +19,7 @@ family = "MonaspiceXe Nerd Font"
 
 [font.offset]
 x = 0
-y = 2
+y = 6
 
 [scrolling]
 history = 10000

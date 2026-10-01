@@ -1,0 +1,4 @@
+font-family = "MonaspiceXe Nerd Font"
+theme = Catppuccin Mocha
+clipboard-read = allow
+clipboard-write = allow

@@ -111,7 +111,7 @@ alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env
 alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
-alias cat="bat -p --theme=OneHalfDark"
+alias cat="bat -p --theme='Catppuccin Frappe'"
 alias z="cd"
 
 alias cp='nocorrect cp'
@@ -163,3 +163,15 @@ done
 
 # opencode
 export PATH=/home/s1kai/.opencode/bin:$PATH
+
+# ssh-agent: one shared agent across shells, with the key preloaded.
+# Needed by docker buildx `--mount=type=ssh` / compose `ssh: - default`
+# when fetching private github.com/KosyanMedia Go modules.
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock"
+ssh-add -l >/dev/null 2>&1
+case $? in
+    1) ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;  # agent up, no keys loaded
+    2) rm -f "$SSH_AUTH_SOCK"                        # no agent reachable
+       ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null 2>&1
+       ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;
+esac
