@@ -1,6 +1,6 @@
 export DOT_FILES="$HOME/configs"
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:"$HOME/go/bin"
 export PATH=$HOME/.local/bin:$PATH
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
