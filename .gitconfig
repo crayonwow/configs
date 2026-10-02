@@ -12,7 +12,7 @@
 	
 [core]
     pager = delta
-    excludesfile = /Users/s1kai/.gitignore_global
+    excludesfile = ~/.gitignore_global
     
 [interactive]
     diffFilter = delta --color-only

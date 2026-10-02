@@ -148,6 +148,12 @@ function zim {
 }
 
 source <(fzf --zsh)
+
+# noctalia themes; lazygit won't start if a listed file is missing
+[[ -r ~/.config/fzf/themes/noctalia.sh ]] && source ~/.config/fzf/themes/noctalia.sh
+[[ -r ~/.config/lazygit/noctalia-theme.yml ]] &&
+    export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/noctalia-theme.yml"
+
 eval "$(zoxide init --cmd cd zsh)"
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -167,11 +173,14 @@ export PATH=/home/s1kai/.opencode/bin:$PATH
 # ssh-agent: one shared agent across shells, with the key preloaded.
 # Needed by docker buildx `--mount=type=ssh` / compose `ssh: - default`
 # when fetching private github.com/KosyanMedia Go modules.
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock"
-ssh-add -l >/dev/null 2>&1
-case $? in
-    1) ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;  # agent up, no keys loaded
-    2) rm -f "$SSH_AUTH_SOCK"                        # no agent reachable
-       ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null 2>&1
-       ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;
-esac
+# Not when SSH already forwards an agent.
+if [[ -z $SSH_CONNECTION || -z $SSH_AUTH_SOCK ]]; then
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock"
+    ssh-add -l >/dev/null 2>&1
+    case $? in
+        1) ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;  # agent up, no keys loaded
+        2) rm -f "$SSH_AUTH_SOCK"                        # no agent reachable
+           ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null 2>&1
+           ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;
+    esac
+fi

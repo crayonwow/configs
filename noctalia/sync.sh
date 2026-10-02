@@ -16,7 +16,17 @@ trap 'rm -f "$tmp"' EXIT
 command -v noctalia >/dev/null || { echo "noctalia is not installed" >&2; exit 1; }
 pgrep -x noctalia >/dev/null || { echo "noctalia is not running; start it first" >&2; exit 1; }
 
-noctalia config export > "$tmp"
+# Public repo: personal tables, subtables included, stay out.
+private_tables='^(location|calendar[.]account)([.]|$)'
+
+noctalia config export | awk -v re="$private_tables" '
+    /^[[:space:]]*\[/ {
+        name = $0
+        gsub(/^[[:space:]]*\[+|\]+[[:space:]]*$/, "", name)
+        skip = (name ~ re)
+    }
+    !skip
+' > "$tmp"
 noctalia config validate "$tmp" >/dev/null || { echo "exported config does not validate" >&2; exit 1; }
 
 if cmp -s "$tmp" "$target"; then

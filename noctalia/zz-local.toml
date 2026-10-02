@@ -20,3 +20,9 @@ output_path = "$XDG_CONFIG_HOME/git/noctalia-delta.gitconfig"
 [theme.templates.user.delta.input_path_modes]
 dark = "$XDG_CONFIG_HOME/noctalia/templates/delta-dark.gitconfig"
 light = "$XDG_CONFIG_HOME/noctalia/templates/delta-light.gitconfig"
+
+# Replaces the community "lazygit" template, which must stay disabled: its
+# apply.sh writes into config.yml, a symlink into this repo. See .zshrc.
+[theme.templates.user.lazygit]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/lazygit.yml"
+output_path = "$XDG_CONFIG_HOME/lazygit/noctalia-theme.yml"

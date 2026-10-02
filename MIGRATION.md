@@ -15,9 +15,10 @@ cd ~/configs && ./bootstrap.sh
 an Apple board) and runs five stages: `repos packages links services user`.
 Any stage can be re-run on its own.
 
-Before the first mango login, fill in `host/x86/mango.conf` — it ships
-empty on purpose, because the display scale and input device names are
-only knowable on the actual hardware:
+Fill in `host/x86/mango.conf` on the hardware — it ships empty on
+purpose. The output name is available from the Sway Spin before mango
+ever runs (`swaymsg -t get_outputs`); input device names need mango, so
+log in once, then reload with SUPER+r:
 
 ```sh
 mmsg get all-monitors    # real output name and resolution
@@ -34,9 +35,8 @@ None of this is in git, and all of it disappears silently if forgotten.
 
 - `~/.ssh/` — `id_ed25519` and `known_hosts`. Copy over an encrypted
   channel, then `chmod 600`.
-- `configs/completions/env` — gitignored, and currently holds a live
-  Sentry token in plaintext. Worth rotating during the move rather than
-  copying as is.
+- `configs/completions/env` — gitignored, holds credentials in plaintext.
+  Worth rotating them during the move rather than copying as is.
 - `configs/work/` — gitignored work shell config, sourced by `.zshrc`.
 - `~/.kube/config` and `~/.config/k9s/`
 - `~/.docker/config.json` — registry credentials
@@ -72,6 +72,10 @@ Workflow: configure in the GUI, then run `./noctalia/sync.sh` to capture
 the result into the repo. The script validates the export and points out
 values tied to the current machine.
 
+sync.sh drops `[location]` and `[calendar.account.*]`, since the repo is
+public; set them again in the GUI. The community `tmux` and `lazygit`
+templates must stay disabled: `zz-local.toml` replaces both.
+
 Those host-specific values need review on the new laptop:
 
 - `[wallpaper.*] path` — absolute paths into ~/Pictures
@@ -88,5 +92,6 @@ systemctl --user status pipewire wireplumber
 ```
 
 Check in particular: lock screen unlocks (PAM), screen sharing works
-(xdg-desktop-portal-wlr), the battery widget appears (UPower), and the
-app launcher finds .desktop entries.
+(xdg-desktop-portal-wlr), the battery widget appears (UPower), the
+app launcher finds .desktop entries, and the community templates got
+downloaded.

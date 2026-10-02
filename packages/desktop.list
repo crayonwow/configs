@@ -1,6 +1,6 @@
 # Wayland desktop: mango + noctalia.
 # noctalia comes from stock Fedora (5.2.0, newer than Terra's beta).
-# Terra is needed only for: mangowm, satty, monaspace-nerd-fonts.
+# Terra is needed only for: mangowm, satty, monaspace-nerd-fonts, ghostty.
 
 # Compositor + shell
 mangowm

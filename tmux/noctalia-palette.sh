@@ -4,8 +4,7 @@
 # colours: it bakes them into format strings as #[fg=...], which override
 # the style options noctalia sets.
 #
-# Reads the rendered theme file directly, not the @noctalia_* options it
-# defines -- .tmux.conf sources that file on its last line, long after this.
+# Reads the rendered theme file directly, not the @noctalia_* options.
 
 set -eu
 

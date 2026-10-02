@@ -1,12 +1,95 @@
-[calendar]
+[bar.default]
+background_opacity = 0.0
+capsule = true
+capsule_opacity = 0.48999998904764652
+center = [ "group:g1" ]
+concave_edge_corners = false
+end = [ "tray", "media", "clipboard", "network", "bluetooth", "group:g2", "group:g3", "session", "battery" ]
+radius = 20
+start = [ "workspaces" ]
 
-[control_center.calendar]
-show_events_card = false
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "clock", "notifications", "control-center" ]
+    opacity = 0.48999997973442078
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g2"
+    members = [ "volume", "brightness" ]
+    opacity = 0.48999997973442078
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g3"
+    members = [ "cpu", "ram" ]
+    opacity = 0.48999997973442078
+    padding = 6.0
+
+[brightness]
+enable_ddcutil = true
+
+[calendar]
+enabled = true
+
+[control_center]
+width = 900
+
+    [control_center.calendar]
+    show_events_card = false
+    show_week_numbers = true
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[hot_corners]
+enabled = true
+
+    [hot_corners.top_right]
+    action = "control_center"
+
+[idle]
+behavior_order = [ "screen-off", "lock", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 120.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 300.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 45.0
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000001" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -40,21 +123,94 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_unlock_hint = true
         show_weather = true
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1008.0
+    cy = 335.5
+    output = "eDP-1"
+    placement_height = 1260.0
+    placement_width = 2016.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        clock_style = "digital"
+        format = "{:%H:%M \\n %a %d.%m}"
+
+[nightlight]
+enabled = true
+force = true
+
+[shell]
+date_format = ""
+screen_time_enabled = true
+settings_window_translucent = true
+
+    [shell.session]
+    show_shortcuts = false
+
 [theme]
-builtin = "Catppuccin"
-community_palette = "Oxocarbon"
+builtin = "Tokyo-Night"
+community_palette = "Catppuccin Mocha Blue"
 mode = "dark"
-source = "builtin"
-wallpaper_scheme = "m3-content"
+source = "wallpaper"
+wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "alacritty" ]
+    builtin_ids = [ "alacritty", "gtk3", "gtk4", "mango" ]
+    community_ids = [ "claude-code", "feishin", "pywalfox", "telegram", "neovim", "bat", "fzf" ]
 
-[wallpaper.default]
-path = "/home/s1kai/Pictures/2026-09-25T22:40:58,142178706+03:00.png"
+        [theme.templates.user.delta]
+        output_path = "$XDG_CONFIG_HOME/git/noctalia-delta.gitconfig"
 
-[wallpaper.last]
-path = "/home/s1kai/Pictures/2026-09-25T22:40:58,142178706+03:00.png"
+            [theme.templates.user.delta.input_path_modes]
+            dark = "$XDG_CONFIG_HOME/noctalia/templates/delta-dark.gitconfig"
+            light = "$XDG_CONFIG_HOME/noctalia/templates/delta-light.gitconfig"
 
-[wallpaper.monitors.eDP-1]
-path = "/home/s1kai/Pictures/2026-09-25T22:40:58,142178706+03:00.png"
+        [theme.templates.user.lazygit]
+        input_path = "$XDG_CONFIG_HOME/noctalia/templates/lazygit.yml"
+        output_path = "$XDG_CONFIG_HOME/lazygit/noctalia-theme.yml"
+
+        [theme.templates.user.tmux]
+        input_path = "$XDG_CONFIG_HOME/noctalia/templates/tmux.conf"
+        output_path = "$XDG_CONFIG_HOME/tmux/themes/noctalia.conf"
+        post_hook = "sh \"$HOME/configs/tmux/noctalia-reload.sh\""
+
+[wallpaper]
+directory = "/home/s1kai/Pictures/Wallpapers"
+
+    [wallpaper.automation]
+    enabled = true
+
+    [wallpaper.default]
+    path = "/home/s1kai/Pictures/Wallpapers/wallhaven-og7g27.jpg"
+
+    [wallpaper.last]
+    path = "/home/s1kai/Pictures/Wallpapers/wallhaven-og7g27.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/s1kai/Pictures/Wallpapers/wallhaven-og7g27.jpg"
+
+[widget.bluetooth]
+enabled = false
+
+[widget.clock]
+format = "{:%H:%M %a %d.%m}"
+
+[widget.control-center]
+enabled = false
+
+[widget.media]
+hide_when_no_media = true
+max_length = 170
+title_scroll = "on_hover"
+
+[widget.notifications]
+hide_when_no_unread = true
+
+[widget.session]
+enabled = false
+
+[widget.tray]
+drawer = true

@@ -5,33 +5,7 @@ git:
     - command: delta --paging=never --true-color=always
       colorArg: always
 gui:
-  theme:
-    activeBorderColor:
-      - "#67e4e4"
-      - bold
-    inactiveBorderColor:
-      - "#5c99d6"
-    searchingActiveBorderColor:
-      - "#6666cc"
-      - bold
-    optionsTextColor:
-      - "#afb6b6"
-    selectedLineBgColor:
-      - "#233639"
-    inactiveViewSelectedLineBgColor:
-      - bold
-    cherryPickedCommitFgColor:
-      - "#afb6b6"
-    cherryPickedCommitBgColor:
-      - "#6666cc"
-    markedBaseCommitFgColor:
-      - "#6666cc"
-    markedBaseCommitBgColor:
-      - "#fd4663"
-    unstagedChangesColor:
-      - "#fd4663"
-    defaultFgColor:
-      - "#f2f3f3"
+  # theme comes from noctalia via LG_CONFIG_FILE, see .zshrc
   expandFocusedSidePanel: true
   sidePanelWidth: 0.2 # number from 0 to 1
   nerdFontsVersion: "3"

@@ -130,7 +130,10 @@ stage_links() {
 
     # Must live under ~/.config: noctalia expands $XDG_CONFIG_HOME in path
     # fields, but not $HOME.
-    link tmux/noctalia-theme.tmpl "$HOME/.config/noctalia/templates/tmux.conf"
+    link tmux/noctalia-theme.tmpl    "$HOME/.config/noctalia/templates/tmux.conf"
+    link git/delta-dark.gitconfig    "$HOME/.config/noctalia/templates/delta-dark.gitconfig"
+    link git/delta-light.gitconfig   "$HOME/.config/noctalia/templates/delta-light.gitconfig"
+    link lazygit/noctalia-theme.tmpl "$HOME/.config/noctalia/templates/lazygit.yml"
 
     link sway.d/config       "$HOME/.config/sway/config"
 }
@@ -161,16 +164,6 @@ stage_user() {
     if [[ "$SHELL" != *zsh ]]; then
         info "setting login shell to zsh"
         chsh -s "$(command -v zsh)"
-    fi
-
-    # Alacritty reads a theme out of this checkout; without it the config
-    # fails to load entirely.
-    local themes="$HOME/.config/alacritty/themes"
-    if [[ ! -d "$themes/.git" ]]; then
-        info "cloning alacritty themes"
-        git clone --depth 1 https://github.com/alacritty/alacritty-theme "$themes"
-    else
-        info "alacritty themes present"
     fi
 
     local nvim="$HOME/.config/nvim"
@@ -209,7 +202,8 @@ HOST=""
 requested=()
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --host) HOST="$2"; shift 2 ;;
+        --host) [[ $# -ge 2 ]] || { echo "--host needs a profile name" >&2; exit 1; }
+                HOST="$2"; shift 2 ;;
         -h|--help) sed -n '2,10p' "${BASH_SOURCE[0]}" | sed 's/^# \?//'; exit 0 ;;
         *) requested+=("$1"); shift ;;
     esac
