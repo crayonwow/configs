@@ -1,0 +1,43 @@
+# Wayland desktop: mango + noctalia.
+# noctalia comes from stock Fedora (5.2.0, newer than Terra's beta).
+# Terra is needed only for: mangowm, satty, monaspace-nerd-fonts.
+
+# Compositor + shell
+mangowm
+noctalia
+
+# Terminals
+alacritty
+ghostty
+
+# Shell support
+# Not here because noctalia does all of it natively: cliphist, swww,
+# grim, slurp, brightnessctl, matugen. wl-clipboard stays for the shell.
+wl-clipboard
+upower
+
+# Optional external annotation editor for screenshots.
+satty
+
+# Weak dep of noctalia, for the udev rules that grant i2c access (DDC/CI).
+ddcutil
+
+# Audio
+pipewire
+wireplumber
+pipewire-pulseaudio
+pavucontrol
+
+# Portals: wlr for screencast/screenshot, gtk for file pickers.
+xdg-desktop-portal
+xdg-desktop-portal-wlr
+xdg-desktop-portal-gtk
+
+# Fonts and icons
+monaspace-nerd-fonts
+papirus-icon-theme
+
+# Fallback session while migrating off the Sway Spin.
+sway
+swaylock
+swayidle

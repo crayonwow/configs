@@ -1,0 +1,25 @@
+# Development toolchain.
+golang
+cargo
+rust
+python3
+python3-pip
+neovim
+
+# Node: Fedora has no plain "nodejs" metapackage, pick a stream.
+nodejs24
+
+# Kubernetes: Fedora dropped kubernetes-client, kubectl comes from the
+# upstream Kubernetes repo (see bootstrap.sh, stage: repos).
+kubectl
+k9s
+
+# Containers
+docker-ce
+docker-ce-cli
+containerd.io
+docker-buildx-plugin
+docker-compose-plugin
+
+# From COPR dejan/lazygit
+lazygit

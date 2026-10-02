@@ -1,0 +1,22 @@
+# Core CLI environment. Everything here is in stock Fedora repos.
+bat
+btop
+eza
+fzf
+git
+git-delta
+gh
+jq
+less
+man-db
+ripgrep
+tmux
+unzip
+zoxide
+zsh
+
+# Networking / hardware daemons
+NetworkManager
+bluez
+bluez-tools
+iwd

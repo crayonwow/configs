@@ -1,40 +1,41 @@
 git:
   ignoreWhitespaceInDiffView: true
   diffRenderers:
-    - command: delta --dark --paging=never --syntax-theme='Catppuccin Mocha' --true-color=always
+    # No --dark: a CLI flag would beat the value noctalia writes to git config.
+    - command: delta --paging=never --true-color=always
       colorArg: always
 gui:
+  theme:
+    activeBorderColor:
+      - "#67e4e4"
+      - bold
+    inactiveBorderColor:
+      - "#5c99d6"
+    searchingActiveBorderColor:
+      - "#6666cc"
+      - bold
+    optionsTextColor:
+      - "#afb6b6"
+    selectedLineBgColor:
+      - "#233639"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#afb6b6"
+    cherryPickedCommitBgColor:
+      - "#6666cc"
+    markedBaseCommitFgColor:
+      - "#6666cc"
+    markedBaseCommitBgColor:
+      - "#fd4663"
+    unstagedChangesColor:
+      - "#fd4663"
+    defaultFgColor:
+      - "#f2f3f3"
   expandFocusedSidePanel: true
   sidePanelWidth: 0.2 # number from 0 to 1
   nerdFontsVersion: "3"
   border: "rounded"
   skipDiscardChangeWarning: true
-  theme:
-    activeBorderColor:
-      - "#89b4fa"
-      - bold
-    inactiveBorderColor:
-      - "#a6adc8"
-    searchingActiveBorderColor:
-      - "#f9e2af"
-    optionsTextColor:
-      - "#89b4fa"
-    selectedLineBgColor:
-      - "#313244"
-    inactiveViewSelectedLineBgColor:
-      - "#6c7086"
-    cherryPickedCommitFgColor:
-      - "#89b4fa"
-    cherryPickedCommitBgColor:
-      - "#45475a"
-    markedBaseCommitFgColor:
-      - "#89b4fa"
-    markedBaseCommitBgColor:
-      - "#f9e2af"
-    unstagedChangesColor:
-      - "#f38ba8"
-    defaultFgColor:
-      - "#cdd6f4"
-
   authorColors:
     "*": "#b4befe"

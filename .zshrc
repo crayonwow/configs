@@ -111,7 +111,7 @@ alias swagger2='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env
 alias n="nvim"
 alias ll="eza -lax --icons --header --git --created --modified --color-scale -H --group-directories-first"
 alias l="eza"
-alias cat="bat -p --theme='Catppuccin Frappe'"
+alias cat="bat -p"
 alias z="cd"
 
 alias cp='nocorrect cp'

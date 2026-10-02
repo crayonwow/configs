@@ -1,2 +1,12 @@
 /.zshrc.work
 /completions/*
+
+# Core dumps land here when something crashes in the repo directory.
+core.*
+
+# Noctalia rewrites settings.toml constantly; keep the tracked copy clean
+# of the backups it leaves behind.
+/noctalia/*.bak
+
+# Claude Code per-machine settings
+/.claude/settings.local.json

@@ -1,0 +1,22 @@
+# Hand-written layer. Must sort after config.toml: sync.sh regenerates
+# that file from the merged config, so it ends up holding a stale copy of
+# everything below.
+
+# Replaces the community "tmux" template, which must stay disabled: its
+# apply.sh appends a source-file line to .tmux.conf, and that file is a
+# tmux/shell hybrid where `cut -c3-` mangles it into `urce-file`, making
+# every config apply exit 127. .tmux.conf.local sources the theme instead.
+[theme.templates.user.tmux]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/tmux.conf"
+output_path = "$XDG_CONFIG_HOME/tmux/themes/noctalia.conf"
+post_hook = 'sh "$HOME/configs/tmux/noctalia-reload.sh"'
+
+# delta reads its syntax theme and dark/light flag from git config, not
+# from bat's, and lazygit renders diffs through delta. Two inputs because
+# light/dark is a flag, not a colour.
+[theme.templates.user.delta]
+output_path = "$XDG_CONFIG_HOME/git/noctalia-delta.gitconfig"
+
+[theme.templates.user.delta.input_path_modes]
+dark = "$XDG_CONFIG_HOME/noctalia/templates/delta-dark.gitconfig"
+light = "$XDG_CONFIG_HOME/noctalia/templates/delta-light.gitconfig"

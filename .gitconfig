@@ -18,10 +18,10 @@
     diffFilter = delta --color-only
 
 [delta]
-    syntax-theme = OneHalfDark
+    # syntax-theme and dark/light come from the include at the bottom,
+    # which noctalia regenerates; git reads it last, so it wins.
     side-by-side = true
     navigate = true
-    dark = true
     true-color = always
     features = decorations
     line-numbers = true
@@ -42,3 +42,7 @@
 	repo = $HOME/aviasales/delta
 	repo = $HOME/aviasales/delta-full
 	repo = $HOME/aviasales/terraform
+
+# Must stay last: git applies includes where they appear.
+[include]
+	path = ~/.config/git/noctalia-delta.gitconfig
