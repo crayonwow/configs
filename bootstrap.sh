@@ -119,6 +119,7 @@ stage_links() {
 
     link mango/config.conf   "$HOME/.config/mango/config.conf"
     link "host/$HOST/mango.conf" "$HOME/.config/mango/host.conf"
+    link mango/xdpw.conf     "$HOME/.config/xdg-desktop-portal-wlr/config"
 
     # Only the ~/.config layer is safe to symlink; the GUI rewrites the
     # state layer by atomic replace. Refresh with noctalia/sync.sh.
@@ -134,6 +135,7 @@ stage_links() {
     link git/delta-dark.gitconfig    "$HOME/.config/noctalia/templates/delta-dark.gitconfig"
     link git/delta-light.gitconfig   "$HOME/.config/noctalia/templates/delta-light.gitconfig"
     link lazygit/noctalia-theme.tmpl "$HOME/.config/noctalia/templates/lazygit.yml"
+    link mango/noctalia-theme.tmpl   "$HOME/.config/noctalia/templates/mango.conf"
 
     link sway.d/config       "$HOME/.config/sway/config"
 }
@@ -150,6 +152,14 @@ stage_services() {
     for unit in pipewire pipewire-pulse wireplumber; do
         systemctl --user enable --now "$unit".service
         info "$unit (user): $(systemctl --user is-active "$unit".service)"
+    done
+
+    # Copied, not linked: udev reads rules before /home is mounted.
+    local rule
+    for rule in "$DOT_FILES/host/$HOST"/*.rules; do
+        [[ -e "$rule" ]] || continue
+        sudo install -m 644 "$rule" /etc/udev/rules.d/
+        info "udev: $(basename "$rule")"
     done
 
     if ! getent group docker | grep -q "\b$USER\b"; then
@@ -185,7 +195,8 @@ stage_user() {
 
     if ! command -v oh-my-posh >/dev/null; then
         info "installing oh-my-posh"
-        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
+        mkdir -p "$HOME/.local/bin"
+        curl -fsSL https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
     else
         info "oh-my-posh present"
     fi

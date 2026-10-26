@@ -1,0 +1,3 @@
+# Let the Intel BT adapter wake the laptop from s2idle, so a BT keyboard or
+# mouse can wake it with the lid closed. The kernel defaults it to disabled.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", ATTR{idProduct}=="0033", ATTR{power/wakeup}="enabled"

@@ -6,10 +6,35 @@ git:
       colorArg: always
 gui:
   # theme comes from noctalia via LG_CONFIG_FILE, see .zshrc
+  theme:
+    activeBorderColor:
+      - "#8caaee"
+      - bold
+    inactiveBorderColor:
+      - "#babbf1"
+    searchingActiveBorderColor:
+      - "#ca9ee6"
+      - bold
+    optionsTextColor:
+      - "#a5adce"
+    selectedLineBgColor:
+      - "#4a4e65"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#a5adce"
+    cherryPickedCommitBgColor:
+      - "#ca9ee6"
+    markedBaseCommitFgColor:
+      - "#ca9ee6"
+    markedBaseCommitBgColor:
+      - "#e78284"
+    unstagedChangesColor:
+      - "#e78284"
+    defaultFgColor:
+      - "#c6d0f5"
   expandFocusedSidePanel: true
   sidePanelWidth: 0.2 # number from 0 to 1
   nerdFontsVersion: "3"
   border: "rounded"
   skipDiscardChangeWarning: true
-  authorColors:
-    "*": "#b4befe"

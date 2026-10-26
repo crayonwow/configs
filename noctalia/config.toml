@@ -77,7 +77,8 @@ behavior_order = [ "screen-off", "lock", "lock-and-suspend" ]
     timeout = 120.0
 
     [idle.behavior.lock-and-suspend]
-    action = "lock_and_suspend"
+    action = "command"
+    command = "grep -q 1 /sys/class/power_supply/AC/online || systemctl suspend"
     enabled = true
     timeout = 300.0
 
@@ -158,7 +159,7 @@ source = "wallpaper"
 wallpaper_scheme = "vibrant"
 
     [theme.templates]
-    builtin_ids = [ "alacritty", "gtk3", "gtk4", "mango" ]
+    builtin_ids = [ "alacritty", "gtk3", "gtk4" ]
     community_ids = [ "claude-code", "feishin", "pywalfox", "telegram", "neovim", "bat", "fzf" ]
 
         [theme.templates.user.delta]

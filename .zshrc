@@ -2,10 +2,13 @@ export DOT_FILES="$HOME/configs"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:"$HOME/go/bin"
 export PATH=$HOME/.local/bin:$PATH
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export PATH=/home/s1kai/.opencode/bin:$PATH
+export PATH="$HOME/.terragrunt/bin:$PATH"
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
 export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 export MANPAGER="nvim +Man!"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export TERM='xterm-256color'
 export EDITOR='nvim'
 export PAGER='less'
@@ -24,7 +27,7 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' 
 export LESS_TERMCAP_ue=$'\E[0m'  
 
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ] && command -v oh-my-posh >/dev/null; then
   eval "$(oh-my-posh init zsh --config $DOT_FILES/ohmyposh.yaml)"
 fi
 
@@ -167,8 +170,6 @@ for config_file in $(ls $DOT_FILES/completions); do
     source $DOT_FILES/completions/$config_file
 done
 
-# opencode
-export PATH=/home/s1kai/.opencode/bin:$PATH
 
 # ssh-agent: one shared agent across shells, with the key preloaded.
 # Needed by docker buildx `--mount=type=ssh` / compose `ssh: - default`

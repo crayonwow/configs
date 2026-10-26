@@ -26,3 +26,17 @@ light = "$XDG_CONFIG_HOME/noctalia/templates/delta-light.gitconfig"
 [theme.templates.user.lazygit]
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/lazygit.yml"
 output_path = "$XDG_CONFIG_HOME/lazygit/noctalia-theme.yml"
+
+# Replaces the builtin "mango" template, which must stay disabled for two
+# reasons: it emits the pre-0.18.0 key names, and its apply.sh appends a
+# `source=` line to config.conf — a symlink into this repo — whenever it
+# fails to match `source(-optional)?`, which our `source_optional` does not.
+[theme.templates.user.mango]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/mango.conf"
+output_path = "$XDG_CONFIG_HOME/mango/noctalia.conf"
+post_hook = 'sh "$HOME/configs/mango/noctalia-apply.sh"'
+
+# Built-in polkit agent (password prompt for snap/App Center, pkexec).
+# mango has no other agent; only one can register per session.
+[shell]
+polkit_agent = true
