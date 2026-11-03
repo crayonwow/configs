@@ -160,7 +160,7 @@ wallpaper_scheme = "vibrant"
 
     [theme.templates]
     builtin_ids = [ "alacritty", "gtk3", "gtk4" ]
-    community_ids = [ "claude-code", "feishin", "pywalfox", "telegram", "neovim", "bat", "fzf" ]
+    community_ids = [ "claude-code", "fzf" ]
 
         [theme.templates.user.delta]
         output_path = "$XDG_CONFIG_HOME/git/noctalia-delta.gitconfig"

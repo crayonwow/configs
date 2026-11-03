@@ -11,7 +11,7 @@ export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
 export MANPAGER="nvim +Man!"
 export TERM='xterm-256color'
 export EDITOR='nvim'
-export PAGER='less'
+export PAGER='bat'
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_CTYPE=C
@@ -150,6 +150,47 @@ function zim {
     eval ${command} && nvim . && z - >> /dev/null
 }
 
+function proxy_add {
+    local repo=~/domain_list
+    local list=$repo/proxy.txt
+    local url=https://raw.githubusercontent.com/crayonwow/domain_list/refs/heads/main/proxy.txt
+    local domain=${1:l}
+    domain=${domain#*://}
+    domain=${domain%%/*}
+    # keep only the registrable domain: a.b.example.com -> example.com, a.example.co.uk -> example.co.uk
+    local -a labels=(${(s:.:)domain})
+    local n=2
+    [[ ${labels[-1]} == ?? && ${labels[-2]} == (co|com|net|org|gov|edu|ac) ]] && n=3
+    domain=${(j:.:)labels[-n,-1]}
+    if [[ $domain != *.* ]]; then
+        echo "usage: proxy_add <domain>"
+        return 1
+    fi
+
+    git -C $repo pull -q --ff-only || return 1
+    if grep -qxF $domain $list; then
+        echo "$domain already in list"
+    else
+        [[ -n $(tail -c1 $list) ]] && echo >> $list
+        echo $domain >> $list
+        git -C $repo commit -q -m "add $domain" -- proxy.txt && git -C $repo push -q || return 1
+    fi
+
+    # raw.githubusercontent.com caches files for ~5 min, wait until the new list is served
+    echo "waiting for $url"
+    local i served=0
+    for i in {1..40}; do
+        curl -fsS $url | grep -qxF $domain && served=1 && break
+        sleep 10
+    done
+    if (( ! served )); then
+        echo "$domain is still not served by raw.githubusercontent.com"
+        return 1
+    fi
+
+    ssh root@192.168.1.1 podkop list_update
+}
+
 source <(fzf --zsh)
 
 # noctalia themes; lazygit won't start if a listed file is missing
@@ -157,7 +198,6 @@ source <(fzf --zsh)
 [[ -r ~/.config/lazygit/noctalia-theme.yml ]] &&
     export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/noctalia-theme.yml"
 
-eval "$(zoxide init --cmd cd zsh)"
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
@@ -185,3 +225,8 @@ if [[ -z $SSH_CONNECTION || -z $SSH_AUTH_SOCK ]]; then
            ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1 ;;
     esac
 fi
+
+# zoxide must be initialized last.
+# Claude Code shell snapshots keep functions but drop chpwd_functions, which trips the zoxide doctor.
+[[ -n $CLAUDECODE ]] && export _ZO_DOCTOR=0
+eval "$(zoxide init --cmd cd zsh)"

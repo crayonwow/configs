@@ -129,6 +129,9 @@ stage_links() {
     # config.toml ends up holding a stale copy of this.
     link noctalia/zz-local.toml "$HOME/.config/noctalia/zz-local.toml"
 
+    # dwm colours: noctalia/palettes/dwm.json, picked as the custom palette.
+    link noctalia/palettes "$HOME/.config/noctalia/palettes"
+
     # Must live under ~/.config: noctalia expands $XDG_CONFIG_HOME in path
     # fields, but not $HOME.
     link tmux/noctalia-theme.tmpl    "$HOME/.config/noctalia/templates/tmux.conf"
@@ -136,6 +139,7 @@ stage_links() {
     link git/delta-light.gitconfig   "$HOME/.config/noctalia/templates/delta-light.gitconfig"
     link lazygit/noctalia-theme.tmpl "$HOME/.config/noctalia/templates/lazygit.yml"
     link mango/noctalia-theme.tmpl   "$HOME/.config/noctalia/templates/mango.conf"
+    link bat/noctalia-theme.tmpl     "$HOME/.config/noctalia/templates/bat.tmTheme"
 
     link sway.d/config       "$HOME/.config/sway/config"
 }

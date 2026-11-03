@@ -8,31 +8,31 @@ gui:
   # theme comes from noctalia via LG_CONFIG_FILE, see .zshrc
   theme:
     activeBorderColor:
-      - "#8caaee"
+      - "#b7b7b7"
       - bold
     inactiveBorderColor:
-      - "#babbf1"
+      - "#939393"
     searchingActiveBorderColor:
-      - "#ca9ee6"
+      - "#999999"
       - bold
     optionsTextColor:
-      - "#a5adce"
+      - "#909090"
     selectedLineBgColor:
-      - "#4a4e65"
+      - "#333333"
     inactiveViewSelectedLineBgColor:
       - bold
     cherryPickedCommitFgColor:
-      - "#a5adce"
+      - "#909090"
     cherryPickedCommitBgColor:
-      - "#ca9ee6"
+      - "#999999"
     markedBaseCommitFgColor:
-      - "#ca9ee6"
+      - "#999999"
     markedBaseCommitBgColor:
-      - "#e78284"
+      - "#dddddd"
     unstagedChangesColor:
-      - "#e78284"
+      - "#dddddd"
     defaultFgColor:
-      - "#c6d0f5"
+      - "#828282"
   expandFocusedSidePanel: true
   sidePanelWidth: 0.2 # number from 0 to 1
   nerdFontsVersion: "3"

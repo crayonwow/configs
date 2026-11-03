@@ -27,6 +27,17 @@ light = "$XDG_CONFIG_HOME/noctalia/templates/delta-light.gitconfig"
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/lazygit.yml"
 output_path = "$XDG_CONFIG_HOME/lazygit/noctalia-theme.yml"
 
+# Replaces the community "bat" template, which must stay disabled: it colours
+# keywords with primary and numbers with secondary, and the dwm palette keeps
+# both dark (#005577, #444444) for the bar, so delta diffs in lazygit were
+# unreadable. Same file with those roles moved to bright terminal colours.
+# bat --theme=noctalia is already in ~/.config/bat/config; delta reads
+# bat's cache, hence the rebuild.
+[theme.templates.user.bat]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/bat.tmTheme"
+output_path = "$XDG_CONFIG_HOME/bat/themes/noctalia.tmTheme"
+post_hook = "bat cache --build"
+
 # Replaces the builtin "mango" template, which must stay disabled for two
 # reasons: it emits the pre-0.18.0 key names, and its apply.sh appends a
 # `source=` line to config.conf — a symlink into this repo — whenever it
@@ -40,3 +51,107 @@ post_hook = 'sh "$HOME/configs/mango/noctalia-apply.sh"'
 # mango has no other agent; only one can register per session.
 [shell]
 polkit_agent = true
+# dwm look: same monospace font as the terminal, no decoration anywhere.
+font_family = "MonaspiceXe Nerd Font"
+corner_radius_scale = 0.0
+popup_shadows = false
+
+    [shell.animation]
+    enabled = false
+
+
+# dwm-style bar: tags | title | status. noctalia has no bar background
+# colour (it is always surface) and no widget that stretches, so the
+# dwm "selected" fill behind the title comes from the bar's inside border
+# at half the thickness, and tags and status sit on surface capsules that
+# fill the full height. Works at any monitor width.
+# These keys also exist in the GUI layer (settings.toml), which loads last
+# and wins, so keep them out of there.
+[bar.default]
+position = "top"
+thickness = 24
+padding = 0
+widget_spacing = 12
+margin_edge = 0
+margin_ends = 0
+margin_opposite_edge = 0
+radius = 0
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+background_opacity = 1.0
+border = "primary"
+border_width = 12.0
+capsule = false
+capsule_radius = 0
+capsule_thickness = 1.0
+capsule_opacity = 1.0
+capsule_border_width = 0.0
+shadow = false
+contact_shadow = false
+compositor_blur = false
+hover_highlight = false
+font_weight = 400
+# dwm draws the status text in its normal foreground (#bbbbbb), not white.
+color = "on_surface_variant"
+# Tags come from the local plugin in plugins/dwm: the built-in workspaces
+# widget keeps gaps between pills and never fills the full bar height.
+start = [ "s1kai/dwm:tags", "active_window" ]
+center = []
+end = [ "group:status" ]
+
+    [[bar.default.capsule_group]]
+    id = "status"
+    enabled = true
+    accordion = false
+    fill = "surface"
+    opacity = 1.0
+    padding = 8.0
+    border_width = 0.0
+    members = [ "tray", "keyboard_layout", "volume", "battery", "clock" ]
+
+# dwm title: on the selected colour, right after the tags.
+[widget.active_window]
+color = "on_primary"
+max_length = 800.0
+
+[widget.keyboard_layout]
+hide_when_single_layout = true
+
+[widget.tray]
+drawer = false
+
+[widget.clock]
+format = "{:%a %d %b %H:%M}"
+
+
+# Plugin sources: an array, so this replaces the default list - keep the two
+# upstream ones and add this repo's plugins directory.
+[plugins]
+enabled = [ "s1kai/dwm" ]
+
+    [[plugins.source]]
+    name = "official"
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    enabled = true
+
+    [[plugins.source]]
+    name = "community"
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    enabled = true
+
+    [[plugins.source]]
+    name = "local"
+    kind = "path"
+    location = "~/configs/noctalia/plugins"
+    enabled = true
+
+# dwm colours everywhere: noctalia/palettes/dwm.json (linked into
+# ~/.config/noctalia/palettes). The GUI layer stores the same choice.
+[theme]
+source = "custom"
+custom_palette = "dwm"
+mode = "dark"

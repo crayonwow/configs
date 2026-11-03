@@ -1,0 +1,15 @@
+# Local plugin, loaded through the "local" path source in zz-local.toml.
+id = "s1kai/dwm"
+name = "dwm"
+version = "1.0.0"
+plugin_api = 32
+author = "s1kai"
+license = "MIT"
+dependencies = []
+tags = ["mango", "workspaces"]
+icon = "layout-grid"
+description = "dwm-style tag bar for mango: gapless cells, occupied markers, layout symbol."
+
+[[widget]]
+id = "tags"
+entry = "tags.luau"
