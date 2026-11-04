@@ -109,7 +109,7 @@ end = [ "group:status" ]
     opacity = 1.0
     padding = 8.0
     border_width = 0.0
-    members = [ "tray", "keyboard_layout", "volume", "battery", "clock" ]
+    members = [ "mgeldi/pixel-shift", "thepunkoff/pomodoro:widget", "tray", "keyboard_layout", "volume", "battery", "clock" ]
 
 # dwm title: on the selected colour, right after the tags.
 [widget.active_window]
@@ -123,7 +123,7 @@ hide_when_single_layout = true
 drawer = false
 
 [widget.clock]
-format = "{:%a %d %b %H:%M}"
+format = "| {:%a %d %b %H:%M}"
 
 
 # Plugin sources: an array, so this replaces the default list - keep the two
