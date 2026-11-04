@@ -153,7 +153,7 @@ function zim {
 function proxy_add {
     local repo=~/domain_list
     local list=$repo/proxy.txt
-    local url=https://raw.githubusercontent.com/crayonwow/domain_list/refs/heads/main/proxy.txt
+    local url=https://codeberg.org/crayonwow/domain_list/raw/branch/main/proxy.txt
     local domain=${1:l}
     domain=${domain#*://}
     domain=${domain%%/*}
